@@ -1,0 +1,7 @@
+{
+  "name": "WRapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
