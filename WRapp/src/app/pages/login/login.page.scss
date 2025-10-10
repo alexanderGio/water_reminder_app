@@ -1,0 +1,14 @@
+ion-content {
+    --background: rgb(143, 143, 240);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column; 
+  gap: 16px; 
+  padding: 16px; 
+}
