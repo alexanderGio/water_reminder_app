@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, AlertController } from '@ionic/angular';
  
 @Component({
   selector: 'app-login',
@@ -30,14 +30,26 @@ export class LoginPage {
   email = '';
   password = '';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, 
+    private router: Router,
+    private alertController: AlertController) {}
+
+    async mostrarErro(mensagem: string) {
+      const alert = await this.alertController.create({
+      header: 'Erro ao fazer login!',
+      message: mensagem,
+      buttons: ['OK'],
+  });
+
+  await alert.present();
+}
 
   async onLogin() {
     try {
       await this.auth.login(this.email, this.password);
       this.router.navigateByUrl('/Tab1Page');
-    } catch (err) {
-      console.error(err);
+    } catch (err:any) {
+      this.mostrarErro(err.message);
     }
   }
 
