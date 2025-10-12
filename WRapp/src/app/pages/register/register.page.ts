@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-
+import { IonicModule, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -28,15 +27,27 @@ import { IonicModule } from '@ionic/angular';
 export class RegisterPage {
   email = '';
   password = '';
+  erro = '';
+  constructor(private auth: AuthService, 
+    private router: Router, 
+    private alertController: AlertController) {}
 
-  constructor(private auth: AuthService, private router: Router) {}
+  async mostrarErro(mensagem: string) {
+  const alert = await this.alertController.create({
+    header: 'Erro',
+    message: mensagem,
+    buttons: ['OK'],
+  });
+
+  await alert.present();
+}
 
   async onRegister() {
     try {
       await this.auth.register(this.email, this.password);
       this.router.navigateByUrl('/login');
-    } catch (err) {
-      console.error(err);
+    } catch (err:any) {
+      this.mostrarErro(err.message); 
     }
   }
 
