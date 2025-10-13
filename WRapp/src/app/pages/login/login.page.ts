@@ -47,7 +47,7 @@ export class LoginPage {
   async onLogin() {
     try {
       await this.auth.login(this.email, this.password);
-      this.router.navigateByUrl('/Tab1Page');
+      this.router.navigate(['/tabs/tab1']);
     } catch (err:any) {
       this.mostrarErro(err.message);
     }

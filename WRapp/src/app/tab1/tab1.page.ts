@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
+import { AguaDiariaComponent } from '../components/agua-diaria/agua-diaria.component';
 
 @Component({
   selector: 'app-home',
@@ -14,27 +15,29 @@ import { AuthService } from '../services/auth.service';
     IonButton,
     IonIcon,
     IonContent,
+    AguaDiariaComponent
   ],
+  styleUrls: ['./tab1.page.scss'],
   template: `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Home</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="logout()">
-            <ion-icon name="log-out-outline" slot="start"></ion-icon>
-            Sair
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-
     <ion-content class="ion-padding">
-      <h2>Bem-vindo(a)!</h2>
-      <p>Você está logado com sucesso 🎉</p>
+      <app-agua-diaria [qntd_diaria]="progresso"></app-agua-diaria>
+
+      <ion-button (click)="aumentar()">Aumentar</ion-button>
+      <ion-button (click)="apagar()">apagar</ion-button>
     </ion-content>
   `
 })
 export class Tab1Page {
+  progresso = 0;
+
+  aumentar(){
+    this.progresso = Math.min(this.progresso + 10,100)
+  }
+
+  apagar(){
+    this.progresso = 0;
+  }
+
   constructor(private auth: AuthService, private router: Router) {}
 
   async logout() {
@@ -42,3 +45,10 @@ export class Tab1Page {
     this.router.navigateByUrl('/login');
   }
 }
+
+//<ion-buttons slot="end">
+//          <ion-button (click)="logout()">
+//            <ion-icon name="log-out-outline" slot="start"></ion-icon>
+//            Sair
+//         </ion-button>
+//        </ion-buttons>

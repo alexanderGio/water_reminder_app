@@ -65,7 +65,7 @@ export class QuestPage implements OnInit {
   constructor(private router: Router) {}
 
     goHome() {
-    this.router.navigateByUrl('/Tab1Page');
+    this.router.navigate(['/tabs/tab1']);
   }
 
 
