@@ -70,4 +70,3 @@ testem.log
 Thumbs.db
 
 # esconder arquivos de ambiente
-.enviroment.ts
