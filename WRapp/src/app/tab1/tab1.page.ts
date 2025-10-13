@@ -22,6 +22,7 @@ import { AguaDiariaComponent } from '../components/agua-diaria/agua-diaria.compo
     <ion-content class="ion-padding">
       <app-agua-diaria [qntd_diaria]="progresso"></app-agua-diaria>
 
+      <h1>Bem vindo</h1>
       <ion-button (click)="aumentar()">Aumentar</ion-button>
       <ion-button (click)="apagar()">apagar</ion-button>
     </ion-content>
