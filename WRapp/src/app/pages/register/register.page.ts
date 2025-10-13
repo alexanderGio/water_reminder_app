@@ -45,7 +45,7 @@ export class RegisterPage {
   async onRegister() {
     try {
       await this.auth.register(this.email, this.password);
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/QuestPage');
     } catch (err:any) {
       this.mostrarErro(err.message); 
     }

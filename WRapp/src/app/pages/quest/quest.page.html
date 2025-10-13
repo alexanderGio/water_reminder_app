@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>quest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="onSubmit()" #formRef="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input
+          type="text"
+          name="nome"
+          required
+          [(ngModel)]="formData.nome">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Peso (kg)</ion-label>
+        <ion-input
+          type="number"
+          name="peso"
+          required
+          [(ngModel)]="formData.peso">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Idade</ion-label>
+        <ion-input
+          type="number"
+          name="idade"
+          required
+          [(ngModel)]="formData.idade">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Gênero biológico</ion-label>
+        <ion-select
+          name="genero"
+          interface="popover"
+          [(ngModel)]="formData.genero"
+          required>
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="feminino">Feminino</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Atividade física</ion-label>
+        <ion-select
+          name="atividade"
+          interface="popover"
+          [(ngModel)]="formData.atividade"
+          required>
+          <ion-select-option value="pouca">Pouca</ion-select-option>
+          <ion-select-option value="media">Média</ion-select-option>
+          <ion-select-option value="muita">Muita</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-button
+      expand="block"
+      color="primary"
+      type="submit"
+      [disabled]="formRef.invalid"
+      (click)="goHome()">
+      Entrar
+    </ion-button>
+  </form>
+</ion-content>
+ 
