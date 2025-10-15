@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -12,31 +12,38 @@ import {
   IonInput,
   IonSelect,
   IonSelectOption,
-  IonButton, } from '@ionic/angular/standalone';
-
+  IonButton,
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
-
-import { getAuth } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../../environments/firebase.config';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-quest',
   templateUrl: './quest.page.html',
   styleUrls: ['./quest.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,  IonHeader,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonButton,
-
-  ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonContent,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonSelect,
+    IonSelectOption,
+    IonButton,
+  ],
 })
-export class QuestPage implements OnInit {
+export class QuestPage {
+  private firestore = inject(Firestore);
+  private auth = inject(Auth);
+  private router = inject(Router);
+
   formData = {
     nome: '',
     peso: null,
@@ -44,32 +51,27 @@ export class QuestPage implements OnInit {
     genero: '',
     atividade: '',
   };
-   async onSubmit() {
-    const auth = getAuth();
-    const user = auth.currentUser;
+
+  async onSubmit() {
+    const user = this.auth.currentUser;
 
     if (!user) {
       alert('Você precisa estar logado!');
       return;
     }
- 
+
     try {
-      await setDoc(doc(db, 'usuarios', user.uid), this.formData, { merge: true });
-      //alert('Dados salvos com sucesso!');
+      const userRef = doc(this.firestore, 'usuarios', user.uid);
+      await setDoc(userRef, this.formData, { merge: true });
+
+      this.router.navigate(['/tabs/tab1']);
     } catch (err) {
       console.error('Erro ao salvar:', err);
-      //alert('Erro ao salvar os dados.');
+      alert('Erro ao salvar os dados.');
     }
   }
 
-  constructor(private router: Router) {}
-
-    goHome() {
+  goHome() {
     this.router.navigate(['/tabs/tab1']);
   }
-
-
-  ngOnInit() {
-  }
-
 }

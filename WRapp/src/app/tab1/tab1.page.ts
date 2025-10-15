@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonButton, IonButtons, IonContent, IonHeader, IonIcon, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
 import { AguaDiariaComponent } from '../components/agua-diaria/agua-diaria.component';
+import { FirestoreService } from '../services/firestore.service';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -15,12 +18,17 @@ import { AguaDiariaComponent } from '../components/agua-diaria/agua-diaria.compo
     IonButton,
     IonIcon,
     IonContent,
-    AguaDiariaComponent
+    AguaDiariaComponent,
+    CommonModule,
+     IonCard, 
+  IonCardHeader, 
+  IonCardTitle, 
+  IonCardContent 
   ],
   styleUrls: ['./tab1.page.scss'],
   template: `
     <ion-content class="ion-padding">
-      <app-agua-diaria [qntd_diaria]="progresso"></app-agua-diaria>
+      <app-agua-diaria></app-agua-diaria>
 
       <h1>Bem vindo</h1>
       <ion-button (click)="aumentar()">Aumentar</ion-button>
@@ -39,7 +47,11 @@ export class Tab1Page {
     this.progresso = 0;
   }
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService,
+    private router: Router) {}
+
+    private firestoreService = inject(FirestoreService);
+    users$ = this.firestoreService.getUsers();
 
   async logout() {
     await this.auth.logout();

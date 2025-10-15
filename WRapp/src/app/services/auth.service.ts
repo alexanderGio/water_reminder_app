@@ -1,20 +1,9 @@
-//importando dependencias
-import { Injectable } from "@angular/core";
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, User} from "@angular/fire/auth";
-import { onAuthStateChanged } from 'firebase/auth';//avisa sempre que um usuário entra, sai ou muda.
-import { BehaviorSubject } from 'rxjs'; //guarda um valor e emite, no caso o usuário atual
+import { Injectable, inject } from '@angular/core';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private user$ = new BehaviorSubject<User | null>(null); //cria um valor null sem nenhum usuário logado
-
-  constructor(private auth: Auth) {
-    onAuthStateChanged(this.auth, user => this.user$.next(user));
-  }
-
-  get currentUser$() {
-    return this.user$.asObservable();
-  }
+  private auth = inject(Auth);
 
   register(email: string, password: string) {
     return createUserWithEmailAndPassword(this.auth, email, password);
@@ -24,7 +13,11 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
+  get currentUser() {
+    return this.auth.currentUser;
+  }
+
   logout() {
-    return signOut(this.auth);
+    return this.auth.signOut();
   }
 }

@@ -17,3 +17,10 @@
     background-color: lightblue;
     transition: height 0.3s ease; /* animação suave */
 }
+
+.agua-text {
+  position: relative;
+  z-index: 1;
+  color: #000000;
+  text-align: center;
+}
