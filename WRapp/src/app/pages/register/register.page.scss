@@ -1,0 +1,82 @@
+// cadastro.page.scss
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(to bottom, #a8c8ff, #79b6ff);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+title {
+  margin-top: 40%;
+  color: #000;
+}
+
+form {
+    margin-top: 50%;
+}
+
+ion-content {
+  --background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+ion-icon {
+  font-size: 1.5rem;
+}
+
+ion-input {
+  --background: #ffeec9;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --placeholder-color: #7b7b7b;
+  color: #000;
+  border-radius: 6px;
+  border: 1px solid #d9c7a4;
+  margin-bottom: 15px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
+}
+
+button {
+    width: 80%;
+    padding: 0.8rem;
+    margin-top: 0.8rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn {
+  --background: linear-gradient(90deg, #a3daff, #89c9ff);
+  --color: #003366;
+  box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2);
+  
+}
+
+ion-button:active {
+  transform: scale(0.97);
+}
