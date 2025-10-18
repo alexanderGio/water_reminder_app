@@ -8,41 +8,32 @@ import { IonicModule, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-register',
   standalone: true,
+  styleUrls: ['././register.page.scss'],
   imports: [IonicModule, CommonModule, FormsModule],
   template: `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Criar Conta</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <ion-content [fullscreen]="true">
+    <h1>Cadastro</h1>
+      <div class="container">
+        <form (ngSubmit)="onRegister()">  
+            <ion-input
+              [(ngModel)]="email"
+              name="email"
+              type="email"
+              placeholder=" Email"
+              required
+            ></ion-input>
 
-    <ion-content class="ion-padding">
-      <form (ngSubmit)="onRegister()">
-        <ion-item>
-          <ion-input
-            [(ngModel)]="email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-          ></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-input
-            [(ngModel)]="password"
-            name="password"
-            type="password"
-            placeholder="Senha"
-            required
-          ></ion-input>
-        </ion-item>
-
-        <ion-button expand="block" type="submit">Cadastrar</ion-button>
-        <ion-button expand="block" fill="clear" (click)="goToLogin()"
-          >Voltar</ion-button
-        >
-      </form>
+            <ion-input
+              [(ngModel)]="password"
+              name="password"
+              type="password"
+              placeholder=" Senha"
+              required
+            ></ion-input>
+          <ion-button class="btn-cadastro" fill="clear"type="submit">Cadastrar</ion-button><br>
+          <ion-button class="btn-voltar" fill="clear" (click)="goToLogin()">Voltar</ion-button>
+        </form>
+        </div>
     </ion-content>
   `,
 })

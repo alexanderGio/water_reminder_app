@@ -30,12 +30,6 @@ import { takeUntil } from 'rxjs/operators';
   ],
   styleUrls: ['./tab1.page.scss'],
   template: `
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Water Reminder</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
     <ion-content class="ion-padding">
       <h1>Bem vindo</h1>
 

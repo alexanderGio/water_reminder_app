@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, AlertController } from '@ionic/angular';
+
  
 @Component({
   selector: 'app-login',
@@ -11,19 +12,39 @@ import { IonicModule, AlertController } from '@ionic/angular';
   styleUrls: ['././login.page.scss'],
   imports: [IonicModule, CommonModule, FormsModule],
   template: `
-    <ion-content class="ion-padding">
-    <h1>Faça seu Login!</h1>
-      <form (ngSubmit)="onLogin()" class="form">
-        <ion-item>
-          <ion-input [(ngModel)]="email" name="email" type="email" placeholder="Email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input [(ngModel)]="password" name="password" type="password" placeholder="Senha"></ion-input>
-        </ion-item>
-        <ion-button expand="block" type="submit">Entrar</ion-button>
-        <ion-button expand="block" fill="clear" (click)="goToRegister()">Criar conta</ion-button>
-      </form>
-    </ion-content>
+<ion-content>
+  <form (ngSubmit)="onLogin()" class="form-container">
+
+    <div class="input-box">
+      <ion-icon name="mail-outline"></ion-icon>
+      <ion-input
+        [(ngModel)]="email"
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+      ></ion-input>
+    </div>
+
+    <div class="input-box">
+      <ion-icon name="lock-closed-outline"></ion-icon>
+      <ion-input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="Senha"
+        required
+      ></ion-input>
+    </div>
+
+    <button type="submit" class="btn-entrar">Entrar</button>
+    <button type="button" (click)="goToRegister()" class="btn-cadastrar">
+      Criar conta
+    </button>
+
+  </form>
+</ion-content>
+
   `
 })
 export class LoginPage {
