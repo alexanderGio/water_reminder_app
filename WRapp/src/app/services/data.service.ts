@@ -19,6 +19,7 @@ export class UserDataService {
 
   //sina para armazenar o usuário atual
   userData$!: Observable<UserData | null>;
+  userId$!: Observable<string | null>;
 
   constructor() {
     // toda vez que o auth muda carrega os dados do Firestore
@@ -31,6 +32,13 @@ export class UserDataService {
         } else {
           subscriber.next(null);
         }
+      });
+      return unsubscribe;
+    });
+
+    this.userId$ = new Observable(subscriber => {
+      const unsubscribe = this.auth.onAuthStateChanged(user => {
+        subscriber.next(user ? user.uid : null);
       });
       return unsubscribe;
     });
