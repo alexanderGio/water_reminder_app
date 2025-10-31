@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-tab1',
   standalone: true,
   imports: [
     IonHeader,
@@ -29,39 +29,9 @@ import { takeUntil } from 'rxjs/operators';
     HttpClientModule,
   ],
   styleUrls: ['./tab1.page.scss'],
-  template: `
-    <ion-content class="ion-padding">
-      <h1>Bem vindo</h1>
+  templateUrl: './tab1.page.html'
 
-      <p>Temperatura atual: {{ temperatura !== null ? temperatura + '°C' : 'Carregando...' }}</p>
-      <p>Status: {{ status }}</p>
-
-      <div class="wave-container" style="position: relative; height: 200px; overflow: hidden; margin-bottom: 20px;">
-        <div class="wave" [style.bottom.%]="consumoPercentual" style="position: absolute; width: 100%; height: 100%;">
-          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" style="width: 100%; height: 100%;">
-            <path fill="#4fc3f7" fill-opacity="0.7" d="M0,160 C360,200 1080,120 1440,160 L1440,320 L0,320 Z"></path>
-          </svg>
-        </div>
-        <div class="percentage-text" style="position: absolute; width: 100%; text-align: center; top: 50%; transform: translateY(-50%); font-size: 24px; font-weight: bold;">
-          {{ consumoPercentual | number:'1.0-0' }}%
-        </div>
-      </div>
-
-      <ion-button expand="block" (click)="toggleDrinkOptions()">
-        {{ showDrinkOptions ? 'Fechar opções' : 'Beber Água' }}
-      </ion-button>
-
-      <div *ngIf="showDrinkOptions" style="margin-top: 10px; display: flex; justify-content: space-around;">
-        <ion-button (click)="beber(200)">200 ml</ion-button>
-        <ion-button (click)="beber(300)">300 ml</ion-button>
-        <ion-button (click)="beber(500)">500 ml</ion-button>
-      </div>
-
-      <p style="margin-top: 20px;">
-        Consumo total: {{ consumoTotal }} ml / Meta diária: {{ necessidadeAguaML }} ml ({{ qntdDiariaLitro | number:'1.2-2' }} litros)
-      </p>
-    </ion-content>
-  `
+   
 })
 export class Tab1Page implements OnInit, OnDestroy {
   consumoPercentual = 0;
@@ -191,8 +161,4 @@ export class Tab1Page implements OnInit, OnDestroy {
     });
   }
 
-  async logout() {
-    await this.auth.logout();
-    this.router.navigateByUrl('/login');
-  }
 }

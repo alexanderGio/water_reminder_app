@@ -1,16 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Corrida / Distância
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="container">
+    <h1>Simulador de Desidratação</h1>
 
+    <!-- Barra de Desidratação (azul) -->
+    <p>Desidratação</p>
+    <div class="hydration-bar">
+      <div class="hydration-fill" [style.width]="hydrationLevel + '%'"></div>
+    </div>
+
+    <!-- Distância percorrida -->
+    <p>Distância percorrida: {{ formatarDistancia() }}</p>
+
+    <!-- Botões iniciar/parar corrida -->
+    <div class="tracking-buttons">
+      <ion-button expand="block" color="success" *ngIf="!rastreamentoAtivo" (click)="iniciarCaminhada()">
+        Iniciar Corrida
+      </ion-button>
+
+      <ion-button expand="block" color="danger" *ngIf="rastreamentoAtivo" (click)="pararCaminhada()">
+        Parar Corrida
+      </ion-button>
+    </div>
+
+    <!-- Status do rastreamento -->
+    <p>Status: {{ status }}</p>
+  </div>
 </ion-content>
