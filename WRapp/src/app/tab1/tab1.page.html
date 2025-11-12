@@ -1,17 +1,68 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- Wrapper das ondas -->
+  <div class="wave-wrapper">
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <!-- Onda 1 -->
+    <div class="wave wave1" [style.bottom.%]="consumoPercentual">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#0288d1" fill-opacity="0.5" d="M0,160 C360,200 1080,120 1440,160 L1440,320 L0,320 Z">
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-60 0" dur="6s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+
+    <!-- Onda 2 -->
+    <div class="wave wave2" [style.bottom.%]="consumoPercentual">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#03a9f4" fill-opacity="0.4" d="M0,180 C360,140 1080,220 1440,180 L1440,320 L0,320 Z">
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-80 0" dur="8s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+
+    <!-- Onda 3 -->
+    <div class="wave wave3" [style.bottom.%]="consumoPercentual">
+      <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#81d4fa" fill-opacity="0.3" d="M0,200 C360,160 1080,240 1440,200 L1440,320 L0,320 Z">
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-100 0" dur="10s" repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+
+    <!-- Texto percentual centralizado -->
+    <div class="consumo-text">
+      {{ consumoPercentual | number: '1.0-0' }}%
+    </div>
+  </div>
+
+  <!-- Caixa da temperatura -->
+  <div class="temperature-box">
+    🌡️ {{ temperatura ?? 'Carregando...' }}°C
+  </div>
+
+  <!-- Sobreposição do conteúdo principal -->
+  <div class="content-overlay">
+    <h1>Quanta água você já bebeu</h1>
+
+    <!-- Meta diária e consumo atual -->
+    <p class="meta-text">
+      Meta diária: <strong>{{ qntdDiariaLitro | number:'1.2-2' }} L</strong>
+    </p>
+
+    <p class="consumed-text">
+      Já bebeu: <strong>{{ (consumoTotal / 1000) | number:'1.2-2' }} L</strong>
+    </p>
+
+    <!-- Botão adicionar água -->
+    <ion-button expand="block" class="add-water" (click)="toggleDrinkOptions()">Adicionar Água</ion-button>
+
+    <!-- Opções de bebida -->
+    <div *ngIf="showDrinkOptions" class="drink-options">
+      <ion-button expand="block" color="primary" (click)="beber(200)">200 ml</ion-button>
+      <ion-button expand="block" color="primary" (click)="beber(300)">300 ml</ion-button>
+      <ion-button expand="block" color="primary" (click)="beber(500)">500 ml</ion-button>
+    </div>
+  </div>
+
 </ion-content>

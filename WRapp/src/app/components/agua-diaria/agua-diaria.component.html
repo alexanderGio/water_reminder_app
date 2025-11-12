@@ -1,0 +1,15 @@
+<div class="agua-container">
+      <div
+        class="agua"
+        [style.height.%]="qntdDiariaLitro ? qntdDiariaLitro * 10 : 0"
+        [style.background-color]="qntdDiariaLitro && qntdDiariaLitro > 2 ? 'blue' : 'lightblue'"
+      ></div>
+
+      <h1 *ngIf="qntdDiariaLitro !== null" class="agua-text">
+        {{ qntdDiariaLitro | number:'1.1-2' }} L/dia
+      </h1>
+
+      <h1 *ngIf="qntdDiariaLitro === null" class="agua-text">
+        Carregando...
+      </h1>
+    </div>

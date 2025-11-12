@@ -1,0 +1,61 @@
+<ion-content>
+  <h1 class="title">Quase lá...</h1>
+  <div class="container">
+  <form (ngSubmit)="onSubmit()" #formRef="ngForm">
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input
+          type="text"
+          name="nome"
+          required
+          [(ngModel)]="formData.nome">
+        </ion-input>
+
+
+        <ion-label position="floating">Peso (kg)</ion-label>
+        <ion-input
+          type="number"
+          name="peso"
+          required
+          [(ngModel)]="formData.peso">
+        </ion-input>
+
+        <ion-label position="floating">Idade</ion-label>
+        <ion-input
+          type="number"
+          name="idade"
+          required
+          [(ngModel)]="formData.idade">
+        </ion-input>
+
+      
+        <ion-label>Gênero biológico</ion-label>
+        <ion-select
+          name="genero"
+          interface="popover"
+          [(ngModel)]="formData.genero"
+          required>
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="feminino">Feminino</ion-select-option>
+        </ion-select>
+
+        <ion-label>Atividade física</ion-label>
+        <ion-select
+          name="atividade"
+          interface="popover"
+          [(ngModel)]="formData.atividade"
+          required>
+          <ion-select-option value="pouca">Pouca</ion-select-option>
+          <ion-select-option value="media">Média</ion-select-option>
+          <ion-select-option value="muita">Muita</ion-select-option>
+        </ion-select>
+
+      <ion-button class="btn"
+        type="submit"
+        [disabled]="formRef.invalid"
+        (click)="goHome()">
+        Entrar
+      </ion-button>
+  </form>
+  </div>
+</ion-content>
+ 

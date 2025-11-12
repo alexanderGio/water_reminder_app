@@ -1,0 +1,171 @@
+ion-content {
+  --background: linear-gradient(to top, #4fc3f7 0%, #81d4fa 50%, #e0f7fa 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #01579b;
+}
+
+/* Wrapper para as ondas */
+.wave-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Cada onda */
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 150px;
+  opacity: 0.5;
+  border-radius: 100% 100% 0 0 / 50% 50% 0 0;
+  background: #29b6f6;
+  animation: waveMove 6s linear infinite, wavePulse 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* Ondas sobrepostas com tempos diferentes para profundidade */
+.wave1 {
+  background: #0288d1;
+  opacity: 0.6;
+  animation-delay: 0s, 0s;
+}
+
+.wave2 {
+  background: #03a9f4;
+  opacity: 0.4;
+  height: 140px;
+  bottom: 5px;
+  animation-delay: -2s, -1s;
+}
+
+.wave3 {
+  background: #81d4fa;
+  opacity: 0.3;
+  height: 130px;
+  bottom: 10px;
+  animation-delay: -4s, -2s;
+}
+
+/* Movimento horizontal das ondas */
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pulso vertical das ondas (subida e descida suave) */
+@keyframes wavePulse {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Texto percentual no meio das ondas */
+.consumo-text {
+  position: absolute;
+  width: 100%;
+  bottom: 25vh;
+  text-align: center;
+  font-weight: 700;
+  font-size: 3.5em;
+  color: #01579b;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+  user-select: none;
+  z-index: 3;
+}
+
+/* Meta diária e consumo atual */
+.meta-text,
+.consumed-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #01579b;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+  user-select: none;
+  z-index: 10;
+}
+
+.meta-text {
+  margin-top: 1rem;
+}
+
+.consumed-text {
+  margin-bottom: 1.5rem;
+}
+
+/* Caixa da temperatura */
+.temperature-box {
+  position: absolute;
+  top: 12vh;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 16px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #0277bd;
+  box-shadow: 0 2px 6px rgba(2, 119, 189, 0.3);
+  user-select: none;
+  z-index: 5;
+}
+
+/* Sobreposição do conteúdo principal */
+.content-overlay {
+  position: relative;
+  z-index: 10;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #01579b;
+  user-select: none;
+}
+
+.content-overlay h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* Botão adicionar água */
+ion-button.add-water {
+  --background: #0288d1;
+  --background-activated: #0277bd;
+  --box-shadow: 0 4px 8px rgba(2, 119, 189, 0.4);
+  --border-radius: 12px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+}
+
+ion-button.add-water:hover {
+  --background: #0277bd;
+  --box-shadow: 0 6px 12px rgba(2, 119, 189, 0.6);
+}
+
+/* Opções de bebida */
+.drink-options ion-button {
+  margin-top: 0.5rem;
+  --background: #03a9f4;
+  --background-activated: #0288d1;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.drink-options ion-button:hover {
+  --background: #0288d1;
+}

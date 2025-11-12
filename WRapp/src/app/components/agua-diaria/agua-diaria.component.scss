@@ -1,0 +1,26 @@
+.agua-container {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.agua {
+    position: absolute;
+    bottom: 0;       /* ponto inicial na base */
+    left: 0;
+    width: 100%;
+    height: 0;       /* começa vazio */
+    background-color: lightblue;
+    transition: height 0.3s ease; /* animação suave */
+}
+
+.agua-text {
+  position: relative;
+  z-index: 1;
+  color: #000000;
+  text-align: center;
+}

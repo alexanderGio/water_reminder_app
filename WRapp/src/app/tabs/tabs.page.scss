@@ -1,1 +1,20 @@
+ion-tab-bar {
+  --background: #8fd8dd;  /* cor do fundo */
+  --color: #000000;       /* cor padrão dos ícones/textos */
+  --color-selected: #0004ff; /* cor quando selecionado */
+  border-top: 5px solid #fff671; /* borda superior opcional */
+  border-radius: 5px;
+  height: 70px;           /* altura da barra */
+}
+
+ion-tab-button {
+  --ripple-color: #4e0ffc;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+ion-tab-button[aria-selected="true"] {
+  transform: scale(1.15); /* aumenta o botão selecionado */
+}
 
