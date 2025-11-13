@@ -1,11 +1,11 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyAmuKH3-HP5MF_3c-pnsNCoqPDbJsLvUOY",
-    authDomain: "wrapp-af88c.firebaseapp.com",
-    projectId: "wrapp-af88c",
-    storageBucket: "wrapp-af88c.firebasestorage.app",
-    messagingSenderId: "1047473893278",
-    appId: "1:1047473893278:web:e2d01bab31312718d5708f"
+apiKey: "AIzaSyAZsuSNZFn0JGtlg_ZezFHsO3f2MhkE-80",
+  authDomain: "waterreminder-df3c3.firebaseapp.com",
+  projectId: "waterreminder-df3c3",
+  storageBucket: "waterreminder-df3c3.firebasestorage.app",
+  messagingSenderId: "605083952667",
+  appId: "1:605083952667:web:3422507d69d6e6fa6dbabe"
   }
 };
