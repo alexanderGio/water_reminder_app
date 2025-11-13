@@ -13,6 +13,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { UserDataService } from '../services/data.service';
 import { CommonModule } from '@angular/common';
 import { Geolocation } from '@capacitor/geolocation';
+import { LocalNotifications } from '@capacitor/local-notifications';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -30,8 +31,6 @@ import { takeUntil } from 'rxjs/operators';
   ],
   styleUrls: ['./tab1.page.scss'],
   templateUrl: './tab1.page.html'
-
-   
 })
 export class Tab1Page implements OnInit, OnDestroy {
   consumoPercentual = 0;
@@ -48,12 +47,11 @@ export class Tab1Page implements OnInit, OnDestroy {
   private http = inject(HttpClient);
   private firestoreService = inject(FirestoreService);
   private userDataService = inject(UserDataService);
-
   private destroy$ = new Subject<void>();
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.userDataService.userData$
       .pipe(takeUntil(this.destroy$))
       .subscribe(user => {
@@ -71,16 +69,58 @@ export class Tab1Page implements OnInit, OnDestroy {
       });
 
     this.getLocalizacaoEClima();
+
+    // 🔔 Inicia os lembretes locais curtos (a cada 1 minuto)
+    await this.iniciarLembretesDeAgua();
   }
 
   ionViewWillEnter() {
-    this.getLocalizacaoEClima(); // roda toda vez que o usuário volta pra essa aba/tela
+    this.getLocalizacaoEClima();
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  // =============================
+  // 🔔 NOTIFICAÇÕES LOCAIS
+  // =============================
+
+  async iniciarLembretesDeAgua() {
+    try {
+      // Cancela notificações anteriores (evita duplicar)
+      await LocalNotifications.cancel({ notifications: [] });
+
+
+      // Agenda uma notificação recorrente a cada minuto (pra demonstração)
+      await LocalNotifications.schedule({
+        notifications: [
+          {
+            id: 1,
+            title: 'Hora de beber água 💧',
+            body: 'Mantenha-se hidratado!',
+            schedule: { every: 'minute' }, // <-- troque pra 'hour' depois da demo
+            sound: 'default',
+            smallIcon: 'ic_stat_icon_config_sample'
+          }
+        ]
+      });
+
+      console.log('⏰ Notificações locais de lembrete agendadas com sucesso!');
+    } catch (error) {
+      console.error('Erro ao agendar notificações locais:', error);
+    }
+  }
+
+  async cancelarLembretes() {
+    await LocalNotifications.cancel({ notifications: [] });
+    console.log('🚫 Lembretes cancelados.');
+  }
+
+  // =============================
+  // 🔹 FUNÇÕES ORIGINAIS DO APP
+  // =============================
 
   toggleDrinkOptions() {
     this.showDrinkOptions = !this.showDrinkOptions;
@@ -138,7 +178,6 @@ export class Tab1Page implements OnInit, OnDestroy {
     } catch (error) {
       console.error('Erro ao obter localização:', error);
       this.status = 'Erro ao acessar localização: ' + (error instanceof Error ? error.message : JSON.stringify(error));
-
     }
   }
 
@@ -160,5 +199,4 @@ export class Tab1Page implements OnInit, OnDestroy {
       }
     });
   }
-
 }
