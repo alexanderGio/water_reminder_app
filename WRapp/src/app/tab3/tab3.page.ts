@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
-@Component({
+@Component({ 
   selector: 'app-tab3',
   styleUrls: ['./tab3.page.scss'],
   standalone: true,

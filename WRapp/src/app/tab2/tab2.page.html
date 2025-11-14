@@ -1,36 +1,35 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Corrida / Distância
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="container">
-    <h1>Simulador de Desidratação</h1>
+  
+  <h1 class="title">Distância Percorrida</h1>
 
+  <div class="container">
     <!-- Barra de Desidratação (azul) -->
-    <p>Desidratação</p>
+    <h2>Barra de Desidratação</h2>
+    <br><br>
     <div class="hydration-bar">
       <div class="hydration-fill" [style.width]="hydrationLevel + '%'"></div>
     </div>
+    
+      <!-- Distância percorrida -->
+      <p>Distância percorrida: {{ formatarDistancia() }}</p>
 
-    <!-- Distância percorrida -->
-    <p>Distância percorrida: {{ formatarDistancia() }}</p>
-
-    <!-- Botões iniciar/parar corrida -->
+        <!-- Botões iniciar/parar corrida -->
     <div class="tracking-buttons">
-      <ion-button expand="block" color="success" *ngIf="!rastreamentoAtivo" (click)="iniciarCaminhada()">
+      <ion-button color="success" shape="round" style="width: 170px; height: 40px;"  *ngIf="!rastreamentoAtivo" (click)="iniciarCaminhada()">
         Iniciar Corrida
       </ion-button>
 
-      <ion-button expand="block" color="danger" *ngIf="rastreamentoAtivo" (click)="pararCaminhada()">
+      <ion-button  color="danger" shape="round" style="width: 170px; height: 40px;"*ngIf="rastreamentoAtivo" (click)="pararCaminhada()">
         Parar Corrida
       </ion-button>
     </div>
 
-    <!-- Status do rastreamento -->
-    <p>Status: {{ status }}</p>
+      <!-- Status do rastreamento -->
+      <p>Status: {{ status }}</p>
   </div>
+
+
+
+
+
 </ion-content>

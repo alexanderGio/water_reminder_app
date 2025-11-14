@@ -1,37 +1,65 @@
+ion-content {
+  --background: rgb(124, 179, 241);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-top: 20%;
+  text-align: center;
+  font-weight: bold;
+}
+
 .container {
   padding: 16px;
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centraliza tudo */
 }
 
+/* Barra de hidratação */
 .hydration-bar {
   width: 100%;
+  max-width: 350px;          /* limita para não ficar gigante */
   height: 25px;
-  background-color: #ddd; /* fundo cinza */
-  border-radius: 12px;
+  background-color: #ddd;
   margin-bottom: 16px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: 12px;
 }
 
 .hydration-fill {
   height: 100%;
   transition: width 0.5s ease-in-out;
-  background: linear-gradient(90deg, #4dabf7, #1976d2); /* azul degradê */
+  background: linear-gradient(90deg, #4dabf7, #1976d2);
   border-radius: 12px 0 0 12px;
 }
 
-.tracking-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
+/* Caixa do texto */
+.texto {
+  font-size: 15px;
+  padding: 12px 16px;
+  text-align: center;
+  max-width: 80%;
 }
 
+/* estilização dos <p> */
 p {
-  font-size: 16px;
-  margin: 8px 0;
+  font-size: 17px;
+  margin: 10px 0;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #2e3a46;     /* cor mais suave e bonita */
 }
 
+/* botões */
 ion-button {
   font-weight: bold;
+  border-radius: 20px !important;
+  width: 200px;              /* tamanho agradável */
+  margin: 8px auto;          /* centraliza */
 }
